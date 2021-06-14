@@ -7,27 +7,31 @@ for(var i = 3 ; i < 9; i++){
 }
 
 function algoritmo(){
-    console.log(mySet);
+    var flag = recorrido(9,false);
+    if (flag){
+        console.log("existen dos numeros que me dan 9")
+    }
 }
 
-function recorrido(){ //funcion que muestra todas las convinaciones de a pares de un array
-    var pos1 = 0;
-    var pos2 = 1;
+function recorrido(num,flag){ //funcion que muestra todas las convinaciones de a pares de un array
+    var posicion1 = 0;
+    var posicion2 = 1;
     var myArr = Array.from(mySet);
-    while (pos2 <= myArr.length && pos1 <= (myArr.length -1)){
-        if (pos2 == myArr.length){
-            if (pos1 == pos2-1){
-                if (pos1 + 1 != myArr.length){
-                console.log(myArr[pos1]+ " , " + myArr[pos2])
-                }
-                pos1++;
+    while (!flag && (posicion2 <= myArr.length && posicion1 < (myArr.length -1))){
+        if (posicion2 == myArr.length){
+            if (posicion1 == posicion2 - 1){
+                console.log(myArr[posicion1]+ " , " + myArr[posicion2]);
+                flag = (myArr[posicion1] + myArr[posicion2] == num);
+                posicion1++;
             }else{
-                pos1++;
-                pos2 = pos1 + 1;
+                posicion1++;
+                posicion2 = posicion1 + 1;
             }
         }else{
-            console.log(myArr[pos1]+ " , " + myArr[pos2])
-            pos2++;
+            console.log(myArr[posicion1]+ " , " + myArr[posicion2]);
+            flag = (myArr[posicion1] + myArr[posicion2] == num);
+            posicion2++;
         }
     }
+    return flag;
 }
