@@ -118,7 +118,7 @@ function secuencia(arr1,arr2){ // num iniciado en 0
 function sort(arr1,arrB,num){
     var flag = false;
     if(arr1.length == num){
-        copiarArray(copia_inf,inf);
+        copiarArray(inf,copia_inf);
         return(secuencia(copia_sup,copia_inf))
     }else{
         var i = 0;
@@ -130,12 +130,13 @@ function sort(arr1,arrB,num){
                 }else{
                     var x = arr1[i];
                     copia_sup.push(x);
-                    console.log(copia_sup);
                 }
                 num++;
                 flag = sort(arr1,arrB,num);
                 arrB[i] = false;
-                copia_sup.pop();
+                if (!flag){
+                    copia_sup.pop();
+                }
                 num--;
             }
             i++;
