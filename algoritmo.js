@@ -11,7 +11,6 @@ var sup = [1,2,0,0,0];
 var inf = [9,0,0,0];
 
 var arrBools = [false,false,false,false,false];
-var num = 0;
 var copia_sup = [];
 var copia_inf = [];
 
@@ -45,11 +44,11 @@ function crearFilas(){
     var con_total = 0; //cuenta personal de cuantas agrupaciones de numeros puedo tener
     var con_pos = 0;   // cuenta personal de cuantas agrupaciones de numeros puedo tener despues del primer filtro
     var head = 0;
+    var num = 0;
     var flag = true;
     for(var i = 0; i < mainArr.length-2; i++){
         for(var l = i+1; l < mainArr.length-1;l++){
             for(var k = l+1; k < mainArr.length;k++){
-                console.log(i ,l ,k); 
                 completador(mainArr[i],mainArr[l],mainArr[k]);
                 while(head < inf.length && recorrido(inf[head],sup)){
                     head++;
@@ -57,13 +56,13 @@ function crearFilas(){
                 con_total++;
                 if(head == inf.length){
                     con_pos++;
-                    console.log("se encontro candidato");
-                    for(let item of sup){
-                    console.log(item)
+                    if (sort(sup,arrBools,num)){
+                        console.log(copia_sup);
                     }
-                    console.log("debajo")
-                    for(let elem of inf){
-                    console.log(elem)
+                    num = 0;
+                    copia_sup =[];
+                    for(var x=0; x < arrBools.length; x++){
+                        arrBools[x] = false;
                     }
                 }
                 head = 0;
